@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran</title>
+</head>
+
+<body>
+    <h1>Form Pendaftaran Mahasiswa</h1>
+    <form id="registrationForm">
+        <div class="form-row">
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" id="nama" name="nama" required placeholder="Nama Lengkap">
+        </div>
+        <div class="form-row">
+            <label for="tempat_lahir">Tempat/Tanggal Lahir</label>
+            <div class="input-group">
+                <input type="text" id="tempat_lahir" name="tempat_lahir" required placeholder="Tempat Lahir"
+                    style="width: 48%;">
+                <input type="date" id="tgl_lahir" name="tgl_lahir" required style="width: 48%;">
+            </div>
+        </div>
+        <div class="form-row">
+            <label for="sekolah">Sekolah Terakhir</label>
+            <input type="text" id="sekolah" name="sekolah" required placeholder="Nama Sekolah">
+        </div>
+        <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Masukkan Email">
+        </div>
+        <div class="form-row">
+            <label for="gambar">Foto Mahasiswa</label>
+            <input type="file" id="gambar" name="gambar" accept="image/*" required>
+        </div>
+        <div class="form-row">
+            <button type="submit">Daftar</button>
+            <button type="button" onclick="hideRegistrationForm()">Batal</button>
+        </div>
+    </form>
+</body>
+
+</html>

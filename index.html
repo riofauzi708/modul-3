@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/index.css">
+    <link rel="stylesheet" href="assets/form.css">
+    <link rel="stylesheet" href="assets/card.css">
+    <title>Tugas Modul 3</title>
+</head>
+
+<body>
+
+    <div class="hero">
+        <h1>Selamat Datang di Universitas Selamat Sri Kendal</h1>
+        <p>Mencetak Generasi Unggul untuk Masa Depan</p>
+    </div>
+
+    <div class="content">
+        <div class="sidebar">
+            <div class="header">
+                <img src="assets/images/logo-unis.png" alt="logo unis">
+                <p>Jl. Raya Soekarno-Hatta No.Km. 03, Gondoarum, Jambearum, Kec. Patebon, Kabupaten Kendal, Jawa Tengah
+                </p>
+            </div>
+            <input type="button" value="DAFTAR" onclick="showRegistrationForm()">
+
+            <div class="featured-programs">
+                <h2>Program Unggulan</h2>
+                <ul>
+                    <li>Program Studi Teknik Informatika</li>
+                    <li>Program Studi Manajemen</li>
+                    <li>Program Studi Hukum</li>
+                    <li>Program Studi Pendidikan</li>
+                </ul>
+            </div>
+
+            <div class="upcoming-events">
+                <h2>Acara Mendatang</h2>
+                <ul>
+                    <li><strong>Webinar:</strong> Inovasi Teknologi di Era Digital - 10 November 2024</li>
+                    <li><strong>Seminar:</strong> Karir di Dunia IT - 15 November 2024</li>
+                    <li><strong>Pameran:</strong> Hasil Karya Mahasiswa - 20 November 2024</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main" id="mainContent">
+            <!-- Content -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2>Footer</h2>
+        <p>&copy; 2024 Universitas Selamat Sri Kendal. All rights reserved.</p>
+        <p>Hubungi kami: admin@uniss.ac.id | Telepon: (0294) 3690577</p>
+    </div>
+
+    <div id="scrollToTop" onclick="scrollToTop()">&#8679;</div>
+
+    <script>
+        const students = [];
+
+        function displayProgramUnggulan() {
+            const mainContent = document.getElementById('mainContent');
+            mainContent.innerHTML = `
+                <h1>Program Unggulan</h1>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                    <img src="assets/images/banner.jpg" alt="Program Unggulan" style="width: 80%; max-width: 400px; border-radius: 10px; margin-bottom: 20px; margin-top: 20px;">
+                    <img src="assets/images/banner2.jpg" alt="Program Unggulan" style="width: 80%; max-width: 400px; border-radius: 10px; margin-bottom: 20px; margin-top: 20px;">
+                </div>
+                <p>Universitas Selamat Sri Kendal memiliki beragam fakultas yang menawarkan program studi unggulan untuk mendukung karir mahasiswa. Dengan kurikulum yang inovatif dan fasilitas yang lengkap, universitas ini berkomitmen untuk mencetak lulusan yang kompeten.</p>
+            `;
+        }
+
+        function showRegistrationForm() {
+            const mainContent = document.getElementById('mainContent');
+            mainContent.innerHTML = `
+                <h1>Form Pendaftaran Mahasiswa</h1>
+                <form id="registrationForm">
+                    <div class="form-row">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama" placeholder="Nama Lengkap" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="tempat_lahir">Tempat/Tanggal Lahir</label>
+                        <div class="input-group">
+                            <input type="text" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir" required style="width: 48%;">
+                            <input type="date" id="tgl_lahir" name="tgl_lahir" required style="width: 48%;">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" id="alamat" name="alamat" placeholder="Alamat" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="sekolah">Sekolah Terakhir</label>
+                        <input type="text" id="sekolah" name="sekolah" placeholder="Nama Sekolah" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukan Email" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="gambar">Foto Mahasiswa</label>
+                        <input type="file" id="gambar" name="gambar" accept="image/*" required>
+                    </div>
+                    <div class="form-button">
+                        <button type="submit">Daftar</button>
+                        <button type="reset" onclick="hideRegistrationForm()">Batal</button>
+                    </div>
+                </form>
+            `;
+
+            document.getElementById('registrationForm').onsubmit = function (event) {
+                event.preventDefault();
+
+                const newStudent = {
+                    nama: document.getElementById('nama').value,
+                    tempat_lahir: document.getElementById('tempat_lahir').value,
+                    tgl_lahir: document.getElementById('tgl_lahir').value,
+                    alamat: document.getElementById('alamat').value,
+                    sekolah: document.getElementById('sekolah').value,
+                    email: document.getElementById('email').value,
+                    gambar: document.getElementById('gambar').files[0]
+                };
+
+                students.push(newStudent);
+                displayStudents();
+                this.reset();
+            };
+        }
+
+        function hideRegistrationForm() {
+            displayProgramUnggulan();
+        }
+
+        function displayStudents() {
+            const mainContent = document.getElementById('mainContent');
+            const studentSection = document.createElement('div');
+            studentSection.innerHTML = '<h2>Data Mahasiswa:</h2>';
+            studentSection.style.display = 'flex';
+            studentSection.style.flexWrap = 'wrap';
+            studentSection.style.gap = '20px';
+
+            students.forEach(student => {
+                const card = document.createElement('div');
+                card.className = 'student-card';
+
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(student.gambar);
+                img.alt = "Foto " + student.nama;
+
+                const infoContainer = document.createElement('div');
+                infoContainer.className = 'info';
+
+                const title = document.createElement('h3');
+                title.innerText = student.nama;
+
+                const details = document.createElement('div');
+                details.className = 'details';
+                details.innerHTML = `
+            <p><strong>Sekolah:</strong> ${student.sekolah}</p>
+            <p><strong>Email:</strong> ${student.email}</p>
+            <p><strong>Tanggal Lahir:</strong> ${student.tgl_lahir}</p>
+            <p><strong>Alamat:</strong> ${student.alamat}</p>
+        `;
+
+                infoContainer.appendChild(title);
+                infoContainer.appendChild(details);
+
+                card.appendChild(img);
+                card.appendChild(infoContainer);
+
+                studentSection.appendChild(card);
+            });
+
+            mainContent.appendChild(studentSection);
+        }
+
+        window.onscroll = function () {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onload = displayProgramUnggulan;
+    </script>
+</body>
+
+</html>
